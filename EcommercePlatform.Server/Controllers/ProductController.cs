@@ -7,12 +7,6 @@ namespace EcommercePlatform.Server.Controllers
 	[ApiController]
 	public class ProductController : Controller
 	{
-		//[HttpGet]
-		//public IActionResult Get([FromBody] ProductData productData)
-		//{
-		//	return Ok("Product data talking from Backend");
-		//}
-
 		[HttpGet]
 		public IActionResult Get()
 		{

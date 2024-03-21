@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import FrontPage from './components/FrontPage'; 
+import FrontPage from './components/FrontPage';
+import CreateProfile from './components/CreateProfile';
 
 const App = () => {
     return (
-        <div>
-            <h1>Product Messages</h1>
-            <FrontPage />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<FrontPage />} />
+                <Route path="/profile" element={<CreateProfile />} />
+            </Routes>
+        </BrowserRouter>
     );
 };
 

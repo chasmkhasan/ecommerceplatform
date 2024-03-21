@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const FrontPage = () => {
+const CreateProfile = () => {
     const [productData, setProductData] = useState(null);
     const [error, setError] = useState(null);
     const [activeMenu, setActiveMenu] = useState("Product Data");
@@ -10,7 +10,7 @@ const FrontPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:7071/api/products');
+                const response = await axios.get('https://localhost:7071/api/profile');
                 setProductData(response.data);
             } catch (error) {
                 setError(error);
@@ -27,10 +27,8 @@ const FrontPage = () => {
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                {/*<button onClick={() => handleMenuClick("Product Data")} style={{ fontWeight: activeMenu === "Product Data" ? 'bold' : 'normal' }}>Product Data</button>*/}
-                {/*<button onClick={() => handleMenuClick("Profile Data")} style={{ fontWeight: activeMenu === "Profile Data" ? 'bold' : 'normal' }}>Profile Data</button>*/}
-                <Link to="/" style={{ fontWeight: activeMenu === "Product Data" ? 'bold' : 'normal' }}>Product Data</Link>
-                <Link to="/profile" style={{ fontWeight: activeMenu === "Profile Data" ? 'bold' : 'normal' }}>Profile Data</Link>
+                <button onClick={() => handleMenuClick("Product Data")} style={{ fontWeight: activeMenu === "Product Data" ? 'bold' : 'normal' }}>Product Data</button>
+                <button onClick={() => handleMenuClick("Profile Data")} style={{ fontWeight: activeMenu === "Profile Data" ? 'bold' : 'normal' }}>Profile Data</button>
             </div>
             <h1>{activeMenu}</h1>
             {error && <p>Error: {error.message}</p>}
@@ -44,4 +42,4 @@ const FrontPage = () => {
     );
 };
 
-export default FrontPage;
+export default CreateProfile;

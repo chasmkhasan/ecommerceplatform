@@ -1,5 +1,6 @@
 ﻿using EcommercePlatform.Server.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.NetworkInformation;
 
 namespace EcommercePlatform.Server.Controllers
 {
@@ -7,28 +8,38 @@ namespace EcommercePlatform.Server.Controllers
 	[ApiController]
 	public class ProfileController : Controller
 	{
+		private static List<ProfileData> profiles = new List<ProfileData>();
+
 		[HttpGet]
-		public IActionResult Get([FromBody] ProfileData profileData)
+		public ActionResult <IEnumerable<ProfileData>> Get()
 		{
-			return Ok("ProfileData coming from Backend");
+			return Ok("profiles");
 		}
 
 		[HttpPost]
-		public IActionResult Post([FromBody] ProfileData profileData)
+		public ActionResult Post([FromBody] ProfileData profileData)
 		{
-			return Ok("ProfileData coming from Backend");
+			if(profileData == null)
+			{
+				return BadRequest("Invalid Data");
+			}
+
+			profileData.Id = profiles.Count + 1;
+
+			profiles.Add(profileData);
+			return CreatedAtAction(nameof(Get), new { id = profileData.Id }, profileData);
 		}
 
-		[HttpPut]
-		public IActionResult Put([FromBody] ProfileData profileData)
-		{
-			return Ok("ProfileData coming from Backend");
-		}
+		//[HttpPut]
+		//public IActionResult Put([FromBody] ProfileData profileData)
+		//{
+		//	return Ok("ProfileData coming from Backend");
+		//}
 
-		[HttpDelete]
-		public IActionResult Delete([FromBody] ProfileData profileData)
-		{
-			return Ok("ProfileData coming from Backend");
-		}
+		//[HttpDelete]
+		//public IActionResult Delete([FromBody] ProfileData profileData)
+		//{
+		//	return Ok("ProfileData coming from Backend");
+		//}
 	}
 }
