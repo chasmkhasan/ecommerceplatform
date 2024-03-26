@@ -1,10 +1,16 @@
-﻿namespace EcommercePlatform.Server.Model
+﻿using System.Text.Json.Serialization;
+
+namespace EcommercePlatform.Server.Model
 {
 	public class ProfileData
 	{
-		public int Id { get; set; }
-		public string? FullName { get; set; }
-		public string? Email { get; set; }
-		public string? Description { get; set; }
+		[JsonPropertyName("customer_id")]
+		public Guid ProductId { get; set; }
+
+		[JsonPropertyName("name")]
+		public string Name { get; set; }
+
+		[JsonPropertyName("email")]
+		public string Email { get; set; }
 	}
 }
