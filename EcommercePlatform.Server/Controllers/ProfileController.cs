@@ -9,9 +9,9 @@ namespace EcommercePlatform.Server.Controllers
 	[ApiController]
 	public class ProfileController : ControllerBase
 	{
-		private IDatabaseAdapter _database;
+		private MongoDbDatabase _database;
 
-		public ProfileController(IDatabaseAdapter database)
+		public ProfileController(MongoDbDatabase database)
 		{
 			_database = database;
 		}
@@ -21,7 +21,7 @@ namespace EcommercePlatform.Server.Controllers
 		{
 			try
 			{
-				var profileDataList = await _database.GetAllProfilesAsync();
+				var profileDataList = await _database.GetAllProfileAsync();
 
 				if (profileDataList.Count == 0)
 				{
@@ -43,9 +43,9 @@ namespace EcommercePlatform.Server.Controllers
 		{
 			try
 			{
-				var profileData = await _database.GetProfileDataById(profileId);
+				var profileData = await _database.GetProfilesByIdAsync(profileId);
 
-				if (profileData == null)
+				if (profileData.Id != profileId)
 				{
 					return NoContent();
 				}

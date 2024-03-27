@@ -1,4 +1,5 @@
 ﻿using EcommercePlatform.Server.Data;
+using EcommercePlatform.Server.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommercePlatform.Server.Controllers
@@ -7,19 +8,21 @@ namespace EcommercePlatform.Server.Controllers
 	[ApiController]
 	public class CustomerServicesController : ControllerBase
 	{
-		private IDatabaseAdapter _database;
+		private readonly MongoDbDatabase _dataBase;
 
-		public CustomerServicesController(IDatabaseAdapter database)
-		{
-			_database = database;
-		}
+		public CustomerServicesController(MongoDbDatabase dataBase) =>
+			_dataBase = dataBase;
 
+		
 		[HttpGet]
+		//public async Task<List<CustomersServicesData>> CustomerServiceList() =>
+		//	await _dataBase.GetAllServicesAsync();
+
 		public async Task<IActionResult> CustomerServiceList()
 		{
 			try
 			{
-				var serviceList = await _database.GetAllCustomersServicesDataAsync();
+				var serviceList = await _dataBase.GetAllServicesAsync();
 
 				if (serviceList.Count == 0)
 				{
@@ -40,9 +43,9 @@ namespace EcommercePlatform.Server.Controllers
 		{
 			try
 			{
-				var serviceData = await _database.GetCustomersServiceDataById(customerServiceId);
+				var serviceData = await _dataBase.GetServicesByIdAsync(customerServiceId);
 
-				if(serviceData.ServiceId != customerServiceId)
+				if(serviceData.Id != customerServiceId)
 				{
 					return NoContent();
 				}

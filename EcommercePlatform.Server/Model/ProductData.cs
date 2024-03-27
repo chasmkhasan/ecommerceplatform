@@ -1,22 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
 namespace EcommercePlatform.Server.Model
 {
 	public class ProductData
 	{
-		[JsonPropertyName("product_id")]
-		public string ProductId { get; set; }
-		
-		[JsonPropertyName("name")]
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
+		public string Id { get; set; }
+
+		[BsonElement("Name")]
 		public string Name { get; set; }
-		
-		[JsonPropertyName("price")]
 		public double Price { get; set; }
-
-		[JsonPropertyName("category")]
 		public string Category { get; set; }
-
-		[JsonPropertyName("author")]
 		public string Author { get; set; }
 	}
 }

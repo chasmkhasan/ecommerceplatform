@@ -9,9 +9,9 @@ namespace EcommercePlatform.Server.Controllers
 	[ApiController]
 	public class ProductController : ControllerBase
 	{
-		private IDatabaseAdapter _database;
+		private MongoDbDatabase _database;
 
-		public ProductController(IDatabaseAdapter database)
+		public ProductController(MongoDbDatabase database)
 		{
 			_database = database;
 		}
@@ -44,9 +44,9 @@ namespace EcommercePlatform.Server.Controllers
 		{
 			try
 			{
-				var productData = await _database.GetProductDataById(productId);
+				var productData = await _database.GetProductsByIdAsync(productId);
 
-				if (productData.ProductId != productId)
+				if (productData.Id != productId)
 				{
 					return NoContent();
 				}

@@ -1,15 +1,20 @@
 using EcommercePlatform.Server.Data;
+using EcommercePlatform.Server.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<ECommerceDataBaseSetting>(
+	builder.Configuration.GetSection("EcommercePlatformDatabase"));
+
+builder.Services.AddSingleton<MongoDbDatabase>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
-builder.Services.AddScoped<IDatabaseAdapter, MongoDbDatabase>(); ;
+//builder.Services.AddScoped<IDatabaseAdapter, MongoDbDatabase>();
 
 
 var app = builder.Build();
