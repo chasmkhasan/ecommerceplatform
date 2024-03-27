@@ -5,7 +5,7 @@ namespace EcommercePlatform.Server.Model
 	public class CustomersServicesData
 	{
 		[JsonPropertyName("service_id")]
-		public Guid ServiceId { get; set; }
+		public string ServiceId { get; set; }
 
 		[JsonPropertyName("customer_name")]
 		public string CustomerName { get; set; }
@@ -14,7 +14,7 @@ namespace EcommercePlatform.Server.Model
 		public string Email { get; set; }
 
 		[JsonPropertyName("product_id")]
-		public ProductData ProductID { get; set; }
+		public string ProductID { get; set; }
 
 		[JsonPropertyName("subject")]
 		public string Subject { get; set; }

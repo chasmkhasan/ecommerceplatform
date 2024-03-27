@@ -1,36 +1,33 @@
 ﻿using EcommercePlatform.Server.Data;
-using EcommercePlatform.Server.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.NetworkInformation;
 
 namespace EcommercePlatform.Server.Controllers
 {
-	[Route("api/part2/profilesData")]
+	[Route("api/part3/CustomerServicesData")]
 	[ApiController]
-	public class ProfileController : ControllerBase
+	public class CustomerServicesController : ControllerBase
 	{
 		private IDatabaseAdapter _database;
 
-		public ProfileController(IDatabaseAdapter database)
+		public CustomerServicesController(IDatabaseAdapter database)
 		{
 			_database = database;
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> ProfileDataList()
+		public async Task<IActionResult> CustomerServiceList()
 		{
 			try
 			{
-				var profileDataList = await _database.GetAllProfilesAsync();
+				var serviceList = await _database.GetAllCustomersServicesDataAsync();
 
-				if (profileDataList.Count == 0)
+				if (serviceList.Count == 0)
 				{
 					return NoContent();
 				}
 
-				return Ok(profileDataList);
+				return Ok(serviceList);
 			}
-
 			catch (Exception ex)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
@@ -38,25 +35,25 @@ namespace EcommercePlatform.Server.Controllers
 		}
 
 		[HttpGet]
-		[Route("{profileId}")]
-		public async Task<IActionResult> GetProfileDataById(string profileId)
+		[Route("{customerServiceId}")]
+		public async Task<IActionResult> GetCustomerServiceDataById(string customerServiceId)
 		{
 			try
 			{
-				var profileData = await _database.GetProfileDataById(profileId);
+				var serviceData = await _database.GetCustomersServiceDataById(customerServiceId);
 
-				if (profileData == null)
+				if(serviceData.ServiceId != customerServiceId)
 				{
 					return NoContent();
 				}
 
-				return Ok(profileData);
+				return Ok(serviceData);
 			}
-
 			catch (Exception ex)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
 		}
+
 	}
 }

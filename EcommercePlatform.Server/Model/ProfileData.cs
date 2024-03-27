@@ -5,7 +5,7 @@ namespace EcommercePlatform.Server.Model
 	public class ProfileData
 	{
 		[JsonPropertyName("customer_id")]
-		public Guid CustomerId { get; set; }
+		public string CustomerId { get; set; }
 
 		[JsonPropertyName("name")]
 		public string Name { get; set; }

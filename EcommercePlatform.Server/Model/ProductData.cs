@@ -5,7 +5,7 @@ namespace EcommercePlatform.Server.Model
 	public class ProductData
 	{
 		[JsonPropertyName("product_id")]
-		public Guid ProductId { get; set; }
+		public string ProductId { get; set; }
 		
 		[JsonPropertyName("name")]
 		public string Name { get; set; }
