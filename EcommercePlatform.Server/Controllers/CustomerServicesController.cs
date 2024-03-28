@@ -1,6 +1,7 @@
 ﻿using EcommercePlatform.Server.Data;
 using EcommercePlatform.Server.Model;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace EcommercePlatform.Server.Controllers
 {
@@ -8,10 +9,10 @@ namespace EcommercePlatform.Server.Controllers
 	[ApiController]
 	public class CustomerServicesController : ControllerBase
 	{
-		private readonly MongoDbDatabase _dataBase;
+		private readonly MongoDbDatabase _database;
 
-		public CustomerServicesController(MongoDbDatabase dataBase) =>
-			_dataBase = dataBase;
+		public CustomerServicesController(MongoDbDatabase database) =>
+			_database = database;
 
 		
 		[HttpGet]
@@ -22,7 +23,7 @@ namespace EcommercePlatform.Server.Controllers
 		{
 			try
 			{
-				var serviceList = await _dataBase.GetAllServicesAsync();
+				var serviceList = await _database.GetAllServicesAsync();
 
 				if (serviceList.Count == 0)
 				{
@@ -31,19 +32,20 @@ namespace EcommercePlatform.Server.Controllers
 
 				return Ok(serviceList);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
 		}
-
+		
+		
 		[HttpGet]
 		[Route("{customerServiceId}")]
 		public async Task<IActionResult> GetCustomerServiceDataById(string customerServiceId)
 		{
 			try
 			{
-				var serviceData = await _dataBase.GetServicesByIdAsync(customerServiceId);
+				var serviceData = await _database.GetServicesByIdAsync(customerServiceId);
 
 				if(serviceData.Id != customerServiceId)
 				{
@@ -52,11 +54,53 @@ namespace EcommercePlatform.Server.Controllers
 
 				return Ok(serviceData);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
 		}
 
+		[HttpPost]
+		public async Task<IActionResult> NewPostService(CustomersServicesData newServicesData)
+		{
+			try
+			{
+				newServicesData.Id = ObjectId.GenerateNewId().ToString();
+
+				await _database.CreateServicesAsync(newServicesData);
+
+				return CreatedAtAction(nameof(CustomerServiceList), new { id = newServicesData.Id }, newServicesData);
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+			
+		}
+
+		//[HttpDelete]
+		//[Route("{customerServiceId}")] // SQL Patter Both will work
+
+		[HttpDelete("{id:length(24)}")] // ASP.NET MongoPattern
+		public async Task<IActionResult> DeleteServiceDataById(string id)
+		{
+			try
+			{
+				var servicesData = await _database.GetServicesByIdAsync(id);
+
+				if (servicesData is null)
+				{
+					return NotFound();
+				}
+
+				await _database.RemoveServiceAsync(id);
+
+				return NoContent();
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+		}
 	}
 }

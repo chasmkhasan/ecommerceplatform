@@ -32,6 +32,11 @@ namespace EcommercePlatform.Server.Data
 		public async Task<CustomersServicesData> GetServicesByIdAsync(string serviceId) =>
 			await _serviceCollection.Find(x => x.Id == serviceId).FirstOrDefaultAsync();
 
+		public async Task CreateServicesAsync(CustomersServicesData createServicesData) =>
+			await _serviceCollection.InsertOneAsync(createServicesData);
+
+		public async Task RemoveServiceAsync(string id) =>
+			await _serviceCollection.DeleteOneAsync(x => x.Id == id);
 
 
 
@@ -40,6 +45,12 @@ namespace EcommercePlatform.Server.Data
 
 		public async Task<ProductData> GetProductsByIdAsync(string productId) =>
 			await _productCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
+
+		public async Task CreateProductAsync(ProductData createProductData) =>
+			await _productCollection.InsertOneAsync(createProductData);
+
+		public async Task RemoveProductAsync(string id) =>
+			await _productCollection.DeleteOneAsync(x => x.Id == id);
 
 
 
@@ -50,6 +61,11 @@ namespace EcommercePlatform.Server.Data
 		public async Task<ProfileData> GetProfilesByIdAsync(string customerId) =>
 			await _profileCollection.Find(x => x.Id == customerId).FirstOrDefaultAsync();
 
+		public async Task CreateProfileAsync(ProfileData createProfileData) =>
+			await _profileCollection.InsertOneAsync(createProfileData);
+
+		public async Task RemoveProfileAsync(string id) =>
+			await _profileCollection.DeleteOneAsync(x => x.Id == id);
 
 	}
 }

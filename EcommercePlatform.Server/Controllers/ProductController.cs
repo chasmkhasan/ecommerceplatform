@@ -2,6 +2,7 @@
 using EcommercePlatform.Server.Model;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace EcommercePlatform.Server.Controllers
 {
@@ -31,7 +32,7 @@ namespace EcommercePlatform.Server.Controllers
 
 				return Ok(productDataList);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
@@ -52,10 +53,49 @@ namespace EcommercePlatform.Server.Controllers
 				}
 				return Ok(productData);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
         }
+
+		[HttpPost]
+		public async Task<IActionResult> PostProduct(ProductData newProductData)
+		{
+			try
+			{
+				newProductData.Id = ObjectId.GenerateNewId().ToString();
+
+				await _database.CreateProductAsync(newProductData);
+
+				return CreatedAtAction(nameof(ProductsDataList), new { id = newProductData.Id }, newProductData);
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+		}
+
+		[HttpDelete("{id:length(24)}")]
+		public async Task<IActionResult> DeleteProductDataById(string id)
+		{
+			try
+			{
+				var productData = await _database.GetProductsByIdAsync(id);
+
+				if(productData is null)
+				{
+					return NotFound();
+				}
+
+				await _database.RemoveProductAsync(id);
+
+				return NoContent();
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+		}
 	}
 }

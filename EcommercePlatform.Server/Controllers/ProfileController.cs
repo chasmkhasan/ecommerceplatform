@@ -1,6 +1,7 @@
 ﻿using EcommercePlatform.Server.Data;
 using EcommercePlatform.Server.Model;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using System.Net.NetworkInformation;
 
 namespace EcommercePlatform.Server.Controllers
@@ -31,7 +32,7 @@ namespace EcommercePlatform.Server.Controllers
 				return Ok(profileDataList);
 			}
 
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
@@ -53,10 +54,51 @@ namespace EcommercePlatform.Server.Controllers
 				return Ok(profileData);
 			}
 
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> NewPostProfile(ProfileData newProfileData)
+		{
+			try
+			{
+				newProfileData.Id = ObjectId.GenerateNewId().ToString();
+
+				await _database.CreateProfileAsync(newProfileData);
+
+				return CreatedAtAction(nameof(ProfileDataList), new { id = newProfileData.Id }, newProfileData);
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+			
+		}
+
+		[HttpDelete("{id:length(24)}")]
+		public async Task<IActionResult> DeleteProfileDataById(string id)
+		{
+			try
+			{
+				var profileData = await _database.GetProfilesByIdAsync(id);
+
+				if (profileData is null)
+				{
+					return NotFound();
+				}
+
+				await _database.RemoveProfileAsync(id);
+
+				return NoContent();
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+
 		}
 	}
 }
