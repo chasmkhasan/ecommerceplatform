@@ -1,16 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System.Text.Json.Serialization;
 
 namespace EcommercePlatform.Server.Model
 {
 	public class ProfileData
 	{
-		[JsonPropertyName("customer_id")]
-		public string CustomerId { get; set; }
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
+		public string Id { get; set; }
 
-		[JsonPropertyName("name")]
+		[BsonElement("Name")]
 		public string Name { get; set; }
-
-		[JsonPropertyName("email")]
 		public string Email { get; set; }
 	}
 }
