@@ -13,7 +13,7 @@ namespace EcommercePlatform.Server.Controllers
 
 		public CustomerServicesController(MongoDbDatabase database) =>
 			_database = database;
-
+		}
 
 		[HttpGet]
 		//public async Task<List<CustomersServicesData>> CustomerServiceList() =>
