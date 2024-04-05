@@ -1,0 +1,31 @@
+.menuContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.menuButton, .activeMenuButton {
+    font-weight: normal;
+}
+
+.activeMenuButton {
+    font-weight: bold;
+}
+
+.productsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.productBox {
+    flex: 1;
+    min-width: 250px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: block; /* or 'flex', depending on your layout */
+    visibility: visible;
+    opacity: 1;
+}

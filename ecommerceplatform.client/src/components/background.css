@@ -1,10 +1,16 @@
-{
-  // This file allows you to configure ESLint according to your project's needs, so that you
-  // can control the strictness of the linter, the plugins to use, and more.
 
-  // For more information about configuring ESLint, visit https://eslint.org/docs/user-guide/configuring/
+body {
+    padding: 2rem;
+    /*background-color: rgb(0,128,128);*/
+}
 
-  "root": true,
-  "extends": "eslint:recommended",
-  "rules": {}
+h1 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-family: verdana;
+    font-size: 20px;
 }

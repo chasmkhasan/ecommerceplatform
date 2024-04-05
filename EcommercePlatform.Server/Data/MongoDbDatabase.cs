@@ -26,6 +26,7 @@ namespace EcommercePlatform.Server.Data
 				eCommerceDataBaseSetting.Value.ProfileCollectionName);
 		}
 
+		//CustomerService Data
 		public async Task<List<CustomersServicesData>> GetAllServicesAsync() =>
 			await _serviceCollection.Find(_ => true).ToListAsync();
 
@@ -39,7 +40,7 @@ namespace EcommercePlatform.Server.Data
 			await _serviceCollection.DeleteOneAsync(x => x.Id == id);
 
 
-
+		//ProductData
 		public async Task<List<ProductData>> GetAllProductsAsync() =>
 			await _productCollection.Find(_ => true).ToListAsync();
 
@@ -54,7 +55,7 @@ namespace EcommercePlatform.Server.Data
 
 
 
-
+		//Profile Data
 		public async Task<List<ProfileData>> GetAllProfileAsync() =>
 			await _profileCollection.Find(_ => true).ToListAsync();
 
@@ -67,5 +68,11 @@ namespace EcommercePlatform.Server.Data
 		public async Task RemoveProfileAsync(string id) =>
 			await _profileCollection.DeleteOneAsync(x => x.Id == id);
 
+
+
+		//Logging
+		public async Task<ProfileData> GetAuthenticationByUsernameAndPasswordAsync(string userName, string hashedPassWord) =>
+			await _profileCollection.Find(x => x.UserName == userName && x.PassWord == hashedPassWord).FirstOrDefaultAsync();
+		
 	}
 }
