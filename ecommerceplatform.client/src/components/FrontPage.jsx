@@ -1,3 +1,65 @@
+//import React, { useState, useEffect } from 'react';
+//import { Link } from 'react-router-dom';
+//import axios from 'axios';
+
+
+//const FrontPage = () => {
+//    const [productData, setProductData] = useState(null);
+//    const [error, setError] = useState(null);
+//    const [activeMenu, setActiveMenu] = useState("Product Data");
+
+//    useEffect(() => {
+//        fetchData();
+//    }, []); // Empty dependency array to run the effect only once on mount
+
+//    const fetchData = async () => {
+//        try {
+//            const response = await
+//                axios.get('https://jsonplaceholder.typicode.com/todos');
+//            // const response = await
+//            axios.get('https://localhost:7071/api/products'); // Check the what kind of error come from server
+//            setProductData(response.data);
+//        } catch (error) {
+//            setError(error);
+//        }
+//    };
+
+//    const handleMenuClick = (menu) => {
+//        setActiveMenu(menu);
+//    }
+
+//    return (
+//        <div>
+//            <div style={{
+//                display: 'flex', justifyContent:
+//                    'space-between', marginBottom: '20px'
+//            }}>
+                
+//                <Link to="/" style={{
+//                    fontWeight: activeMenu ===
+//                        "Product Data" ? 'bold' : 'normal'
+//                }}>Product Data</Link>
+//                <Link to="/profile" style={{
+//                    fontWeight: activeMenu
+//                        === "Profile Data" ? 'bold' : 'normal'
+//                }}>Profile Data</Link>
+//            </div>
+//            <h1>{activeMenu}</h1>
+//            {error && <p>Error: {error.message}</p>}
+//            {productData && (
+//                <div>
+//                    <p>{JSON.stringify(productData)}</p>
+//                    {/* Render other product data as needed */}
+//                </div>
+//            )}
+
+
+//        </div>
+//    );
+//};
+
+//export default FrontPage;
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,17 +73,32 @@ const FrontPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('https://localhost:7071/api/part1/productsData');
-                console.log(response);
-                setProductData(response.data);
-            } catch (error) {
-                setError(error);
-            }
-        };
         fetchData();
-    }, []);
+    }, [])
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('https://localhost:7071/api/part1/productsData');
+            console.log(response);
+            
+            setProductData(response.data);
+        } catch (error) {
+            setError(error);
+        }
+    };
+
+    //useEffect(() => {
+    //    const fetchData = async () => {
+    //        try {
+    //            const response = await axios.get('https://localhost:7071/api/part1/productsData');
+    //            console.log(response);
+    //            setProductData(response.data);
+    //        } catch (error) {
+    //            setError(error);
+    //        }
+    //    };
+    //    fetchData();
+    //}, []);
 
     const handleMenuClick = (menu) => {
         setActiveMenu(menu);
@@ -49,10 +126,10 @@ const FrontPage = () => {
             <div className={styles.productsContainer}>
                 {productData && productData.map((product, index) => (
                     <div key={product.Id || index} className={styles.productBox}>
-                        <h2>Name: {product.Name}</h2>
-                        <p>Price: ${product.Price}</p>
-                        <p>Category: {product.Category}</p>
-                        <p>Author: {product.Author}</p>
+                        <h2>{product.name}</h2>
+                        <p>Price: ${product.price}</p>
+                        <p>Category: {product.category}</p>
+                        <p>Author: {product.author}</p>
                     </div>
                 ))}
             </div>
