@@ -46,6 +46,6 @@ input[type="password"] {
     font-size: 16px; /* Slightly larger font size for readability */
 }
 
-    .submitButton:hover {
-        background-color: #0056b3; /* Darker blue on hover for visual feedback */
-    }
+.submitButton:hover {
+    background-color: #0056b3; /* Darker blue on hover for visual feedback */
+}

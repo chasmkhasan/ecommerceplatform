@@ -21,7 +21,7 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-
+			
 			var hashedPassword = HashPassword(credentials.PassWord);
 
 			var profileData = await _database.GetAuthenticationByUsernameAndPasswordAsync(credentials.UserName, hashedPassword);
