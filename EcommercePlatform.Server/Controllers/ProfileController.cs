@@ -75,7 +75,7 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
-			
+
 		}
 
 		[HttpDelete("{id:length(24)}")]

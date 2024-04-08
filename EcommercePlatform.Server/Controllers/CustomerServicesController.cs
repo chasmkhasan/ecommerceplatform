@@ -14,7 +14,7 @@ namespace EcommercePlatform.Server.Controllers
 		public CustomerServicesController(MongoDbDatabase database) =>
 			_database = database;
 
-		
+
 		[HttpGet]
 		//public async Task<List<CustomersServicesData>> CustomerServiceList() =>
 		//	await _dataBase.GetAllServicesAsync();
@@ -37,8 +37,8 @@ namespace EcommercePlatform.Server.Controllers
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
 		}
-		
-		
+
+
 		[HttpGet]
 		[Route("{customerServiceId}")]
 		public async Task<IActionResult> GetCustomerServiceDataById(string customerServiceId)
@@ -47,7 +47,7 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				var serviceData = await _database.GetServicesByIdAsync(customerServiceId);
 
-				if(serviceData.Id != customerServiceId)
+				if (serviceData.Id != customerServiceId)
 				{
 					return NoContent();
 				}
@@ -75,7 +75,7 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
-			
+
 		}
 
 		//[HttpDelete]

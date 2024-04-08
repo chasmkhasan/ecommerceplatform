@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './FrontPage.module.css'; // Correct path according to your project structure
 
+
 const FrontPage = () => {
     const [productData, setProductData] = useState(null);
     console.log(productData);

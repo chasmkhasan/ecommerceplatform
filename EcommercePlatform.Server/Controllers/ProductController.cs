@@ -57,7 +57,7 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
-        }
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> PostProduct(ProductData newProductData)
@@ -83,7 +83,7 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				var productData = await _database.GetProductsByIdAsync(id);
 
-				if(productData is null)
+				if (productData is null)
 				{
 					return NotFound();
 				}
