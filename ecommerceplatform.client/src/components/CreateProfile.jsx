@@ -1,43 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import axios from 'axios';
+import styles from './CreateProfile.module.css';
 
 const CreateProfile = () => {
-    const [productData, setProductData] = useState(null);
-    const [error, setError] = useState(null);
-    const [activeMenu, setActiveMenu] = useState("Product Data");
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [userName, setUserName] = useState('');
+    const [passWord, setPassWord] = useState('');
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('https://localhost:7071/api/profile');
-                setProductData(response.data);
-            } catch (error) {
-                setError(error);
+    const handleNameChange = (event) => setName(event.target.value);
+    const handleEmailChange = (event) => setEmail(event.target.value);
+    const handleUserNameChange = (event) => setUserName(event.target.value);
+    const handlePassWordChange = (event) => setPassWord(event.target.value);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            if (!name || !email || !userName || !passWord) {
+                throw new Error('All fields are required');
             }
-        };
-
-        fetchData();
-    }, []); // Empty dependency array to run the effect only once on mount
-
-    const handleMenuClick = (menu) => {
-        setActiveMenu(menu);
-    }
+            await axios.post('https://example.com/api/part2/profilesData', {
+                name,
+                email,
+                userName,
+                passWord,
+            });
+            alert('Your profile has been created successfully!');
+        } catch (error) {
+            alert(error.message);
+        }
+    };
 
     return (
-        <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                <button onClick={() => handleMenuClick("Product Data")} style={{ fontWeight: activeMenu === "Product Data" ? 'bold' : 'normal' }}>Product Data</button>
-                <button onClick={() => handleMenuClick("Profile Data")} style={{ fontWeight: activeMenu === "Profile Data" ? 'bold' : 'normal' }}>Profile Data</button>
-            </div>
-            <h1>{activeMenu}</h1>
-            {error && <p>Error: {error.message}</p>}
-            {productData && (
-                <div>
-                    <p>{productData}</p>
-                    {/* Render other product data as needed */}
+        <div className={styles.createProfileContainer}>
+            <h1>Create Profile</h1>
+            <form onSubmit={handleSubmit} className={styles.profileForm}>
+                <div className={styles.formGroup}>
+                    <label htmlFor="name">Name:</label>
+                    <input id="name" type="text" value={name} onChange={handleNameChange} />
                 </div>
-            )}
+                <div className={styles.formGroup}>
+                    <label htmlFor="email">Email:</label>
+                    <input id="email" type="email" value={email} onChange={handleEmailChange} />
+                </div>
+                <div className={styles.formGroup}>
+                    <label htmlFor="userName">Username:</label>
+                    <input id="userName" type="text" value={userName} onChange={handleUserNameChange} />
+                </div>
+                <div className={styles.formGroup}>
+                    <label htmlFor="passWord">Password:</label>
+                    <input id="passWord" type="password" value={passWord} onChange={handlePassWordChange} />
+                </div>
+                <button type="submit" className={styles.submitButton}>Submit</button>
+            </form>
         </div>
     );
 };
