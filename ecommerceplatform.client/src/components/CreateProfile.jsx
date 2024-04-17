@@ -19,7 +19,7 @@ const CreateProfile = () => {
             if (!name || !email || !userName || !passWord) {
                 throw new Error('All fields are required');
             }
-            await axios.post('https://example.com/api/part2/profilesData', {
+            await axios.post('https://localhost:7071/api/part2/profilesData', {
                 name,
                 email,
                 userName,

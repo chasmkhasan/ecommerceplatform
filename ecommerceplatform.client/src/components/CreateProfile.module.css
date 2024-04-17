@@ -21,18 +21,19 @@
 
 label {
     display: block;
-    margin-bottom: 5px; /* Space between label and input */
+    margin-bottom: 10px; /* Space between label and input */
     color: #333333; /* Dark color for text for better readability */
 }
 
-input[type="text"],
+input[type="name"],
 input[type="email"],
+input[type="userName"],
 input[type="password"] {
-    width: 100%; /* Makes the input stretch to the container width */
+    width: 100%;  
     padding: 10px;
-    margin-bottom: 10px; /* Adds space between inputs */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 4px; /* Rounded corners for the inputs */
+    margin-bottom: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
 }
 
 .submitButton {
