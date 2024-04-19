@@ -7,15 +7,13 @@ import CustomerService from './components/CustomerService';
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<FrontPage />} />
-                <Route path="/FrontPage" element={<FrontPage />} />
-                <Route path="/CreateProfile" element={<CreateProfile />} />
-                <Route path="/LogIn" element={<LogIn />} />
-                <Route path="/CustomerService" element={<CustomerService />} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/" element={<FrontPage />} />
+            <Route path="/FrontPage" element={<FrontPage />} />
+            <Route path="/CreateProfile" element={<CreateProfile />} />
+            <Route path="/LogIn" element={<LogIn />} />
+            <Route path="/CustomerService" element={<CustomerService />} />
+        </Routes>
     );
 };
 

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext.jsx';
 import styles from './LogIn.module.css';
 
 const LogIn = () => {
@@ -10,6 +11,7 @@ const LogIn = () => {
     const [error, setError] = useState(null);
     const [activeMenu, setActiveMenu] = useState('');
 
+    const { setAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -18,26 +20,37 @@ const LogIn = () => {
         setSuccessMessage('');
 
         try {
-            const response = await axios.post('https://localhost:7071/logIn', {
-                userName: userName,
-                passWord: passWord,
+            const response = await axios.get('https://localhost:7071/api/part4/LogIn', {
+                params: {
+                    userName: userName,
+                    passWord: passWord,
+                }
             });
-            setSuccessMessage(response.data);
+            const users = response.data;
+            console.log("API Response Data:", users);
+
+            const user = users.find(u => u.userName === userName && u.passWord === passWord);
+            if (user) {
+                console.log(`User Found: ${user.name}, setting welcome message...`);
+                setSuccessMessage(`Welcome ${user.name}!`);
+                setAuthenticated(true);
+                setTimeout(() => navigate("/CustomerService"), 1000); // Delay navigation to test message display
+            } else {
+                console.log("No matching user found or invalid credentials.");
+                throw new Error("Invalid user data");
+            }
         } catch (error) {
-            setError(error.response ? error.response.data : 'An error occurred');
+            console.error("Error during API call:", error);
+            setError(error.response ? (error.response.data || error.response.statusText) : 'An error occurred');
+            setAuthenticated(false);
         }
     };
 
-    const handleMenuClick = (menu) => {
-        setActiveMenu(menu); 
-        if (menu === "FrontPage") {
-            navigate("/FrontPage"); 
-        } else if (menu === "CreateProfile") {
-            navigate("/CreateProfile"); 
-        } else if (menu === "CustomerService") {
-            navigate("/CustomerService");
+    useEffect(() => {
+        if (successMessage) {
+            console.log(`Success Message Updated: ${successMessage}`); // To confirm state update
         }
-    };
+    }, [successMessage]);
 
     return (
         <div>

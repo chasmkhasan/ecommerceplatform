@@ -39,6 +39,7 @@ namespace EcommercePlatform.Server.Controllers
 
 		}
 
+
 		[HttpGet]
 		[Route("{productId}")]
 		public async Task<IActionResult> GetProductDataById(string productId)
@@ -58,6 +59,27 @@ namespace EcommercePlatform.Server.Controllers
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
 		}
+
+		[HttpGet]
+		[Route("ByAuthor{author}")]
+		public async Task<IActionResult> GetProductDataByAuthor(string author)
+		{
+			try
+			{
+				var productData = await _database.GetProductDataByAuthor(author);
+
+				if(productData.Count == 0)
+				{
+					return NoContent();
+				}
+				return Ok(productData);
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+		}
+
 
 		[HttpPost]
 		public async Task<IActionResult> PostProduct(ProductData newProductData)

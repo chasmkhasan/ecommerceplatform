@@ -5,7 +5,7 @@ import styles from './FrontPage.module.css'; // Correct path according to your p
 
 const FrontPage = () => {
     const [productData, setProductData] = useState(null);
-    console.log(productData);
+    /*console.log(productData);*/
     const [error, setError] = useState(null);
     const [activeMenu, setActiveMenu] = useState("Product Data");
     const navigate = useNavigate();

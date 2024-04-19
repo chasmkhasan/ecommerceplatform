@@ -33,6 +33,9 @@ namespace EcommercePlatform.Server.Data
 		public async Task<CustomersServicesData> GetServicesByIdAsync(string serviceId) =>
 			await _serviceCollection.Find(x => x.Id == serviceId).FirstOrDefaultAsync();
 
+		public async Task<List<CustomersServicesData>> GetServicesDataByEmailAsync(string email) =>
+			await _serviceCollection.Find(x => x.Email == email).ToListAsync();
+
 		public async Task CreateServicesAsync(CustomersServicesData createServicesData) =>
 			await _serviceCollection.InsertOneAsync(createServicesData);
 
@@ -46,6 +49,9 @@ namespace EcommercePlatform.Server.Data
 
 		public async Task<ProductData> GetProductsByIdAsync(string productId) =>
 			await _productCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
+
+		public async Task<List<ProductData>> GetProductDataByAuthor(string author) =>
+			await _productCollection.Find(x => x.Author == author).ToListAsync();
 
 		public async Task CreateProductAsync(ProductData createProductData) =>
 			await _productCollection.InsertOneAsync(createProductData);
@@ -71,6 +77,9 @@ namespace EcommercePlatform.Server.Data
 
 
 		//Logging
+		public async Task<ProfileData> GetProfileDataByUserNameAsync(string userName) =>
+			await _profileCollection.Find(x => x.UserName == userName).FirstOrDefaultAsync();
+
 		public async Task<ProfileData> GetAuthenticationByUsernameAndPasswordAsync(string userName, string hashedPassWord) =>
 			await _profileCollection.Find(x => x.UserName == userName && x.PassWord == hashedPassWord).FirstOrDefaultAsync();
 

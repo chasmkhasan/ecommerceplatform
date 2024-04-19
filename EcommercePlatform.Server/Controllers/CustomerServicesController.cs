@@ -40,18 +40,38 @@ namespace EcommercePlatform.Server.Controllers
 
 
 		[HttpGet]
-		[Route("{customerServiceId}")]
-		public async Task<IActionResult> GetCustomerServiceDataById(string customerServiceId)
+		[Route("{id}")]
+		public async Task<IActionResult> GetCustomerServiceDataById(string id)
 		{
 			try
 			{
-				var serviceData = await _database.GetServicesByIdAsync(customerServiceId);
+				var serviceData = await _database.GetServicesByIdAsync(id);
 
-				if (serviceData.Id != customerServiceId)
+				if (serviceData.Id != id)
 				{
 					return NoContent();
 				}
 
+				return Ok(serviceData);
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+		}
+
+		[HttpGet]
+		[Route ("ByEmail/{email}")]
+		public async Task<IActionResult> GetCustomerServiceDataByEmail(string email)
+		{
+			try
+			{
+				var serviceData = await _database.GetServicesDataByEmailAsync(email);
+
+				if(serviceData.Count == 0)
+				{
+					return NoContent();
+				}
 				return Ok(serviceData);
 			}
 			catch (Exception)

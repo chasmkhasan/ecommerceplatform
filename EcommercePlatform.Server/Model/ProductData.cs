@@ -10,10 +10,16 @@ namespace EcommercePlatform.Server.Model
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
 
-		[BsonElement("Name")]
+		[BsonElement("Name")] // Ensure this matches the case and name in the MongoDB document
 		public string Name { get; set; }
+
+		[BsonElement("Price")] // Ensure this matches the case and name in the MongoDB document
 		public double Price { get; set; }
+
+		[BsonElement("Category")] // Ensure this matches the case and name in the MongoDB document
 		public string Category { get; set; }
+
+		[BsonElement("Author")] // Ensure this matches the case and name in the MongoDB document
 		public string Author { get; set; }
 	}
 }

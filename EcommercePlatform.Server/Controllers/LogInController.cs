@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 namespace EcommercePlatform.Server.Controllers
 {
+	[Route("api/part4/LogIn")]
+	[ApiController]
 	public class LogInController : ControllerBase
 	{
 		private readonly MongoDbDatabase _database;
@@ -12,6 +14,46 @@ namespace EcommercePlatform.Server.Controllers
 		public LogInController(MongoDbDatabase database)
 		{
 			_database = database;
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> ProfileDataListForLogin()
+		{
+			try
+			{
+				var logingDataList = await _database.GetAllProfileAsync();
+
+				if(logingDataList.Count == 0)
+				{
+					return NoContent();
+				}
+
+				return Ok(logingDataList);
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
+		}
+
+		[HttpGet]
+		[Route("{userName}")]
+		public async Task<IActionResult> GetProfileDataByUserName(string userName)
+		{
+			try
+			{
+				var profileData = await _database.GetProfileDataByUserNameAsync(userName);
+
+				if (profileData.UserName != userName)
+				{
+					return NoContent();
+				}
+				return Ok(profileData);
+			}
+			catch (Exception)
+			{
+				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
+			}
 		}
 
 		[HttpPost("logIn")]
@@ -37,5 +79,7 @@ namespace EcommercePlatform.Server.Controllers
 		{
 			return password; // Do not use this in production!
 		}
+
+		
 	}
 }
