@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .profileForm {
@@ -24,10 +24,10 @@ label {
     margin-bottom: 10px; /* Space between label and input */
     color: #333333; /* Dark color for text for better readability */
 }
-input[type="text"],
-/*input[type="name"],*/
+
+input[type="name"],
 input[type="email"],
-/*input[type="userName"],*/
+input[type="userName"],
 input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -47,6 +47,6 @@ input[type="password"] {
     font-size: 16px; /* Slightly larger font size for readability */
 }
 
-.submitButton:hover {
-    background-color: #0056b3; /* Darker blue on hover for visual feedback */
-}
+    .submitButton:hover {
+        background-color: #0056b3; /* Darker blue on hover for visual feedback */
+    }

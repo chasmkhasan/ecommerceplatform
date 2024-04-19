@@ -1,61 +1,53 @@
-.menuContainer {
+.createProfileContainer {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.menuButton, .activeMenuButton {
-    font-weight: normal;
-}
-
-.activeMenuButton {
-    font-weight: bold;
-}
-
-.formContainer {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 40vh;  /*Adjust based on your layout */
+    /*margin-top: 10px;*/
 }
 
-.formBox {
+.profileForm {
     width: 100%;
-    max-width: 1000px; /* Increased width for a wider form */
-    margin: auto;
+    max-width: 500px; /* Adjust based on your preference for form width */
+    border: 2px solid #007bff; /* Gives the form a blue border */
     padding: 20px;
-    border: 6px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
-    background-color: white;
+    border-radius: 8px; /* Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+    background-color: #ffffff; /* Ensures the form background is white */
 }
 
-input[type="text"], input[type="email"], textarea {
-    width: calc(100% - 22px); /* Adjusted for consistency in form elements */
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.formGroup {
+    margin-bottom: 20px; /* Adds space between form fields */
 }
 
-button[type="submit"] {
+label {
+    display: block;
+    margin-bottom: 10px; /* Space between label and input */
+    color: #333333; /* Dark color for text for better readability */
+}
+
+input[type="text"],
+input[type="name"],
+input[type="email"],
+input[type="userName"],
+input[type="password"] {
     width: 100%;
     padding: 10px;
-    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 10px;
     border: none;
-    background-color: #007bff;
-    color: white;
+    border-radius: 4px;
+    background-color: #007bff; /* Blue background */
+    color: #ffffff; /* White text */
     cursor: pointer;
+    font-size: 16px; /* Slightly larger font size for readability */
 }
 
-    button[type="submit"]:hover {
-        background-color: #0056b3;
+    .submitButton:hover {
+        background-color: #0056b3; /* Darker blue on hover for visual feedback */
     }
-
-.error {
-    color: #dc3545;
-}
-
-.success {
-    color: #28a745;
-}

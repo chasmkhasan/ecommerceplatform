@@ -4,6 +4,7 @@ import FrontPage from './components/FrontPage';
 import CreateProfile from './components/CreateProfile';
 import LogIn from './components/LogIn';
 import CustomerService from './components/CustomerService';
+import RegCustomerService from './components/RegCustomerService';
 
 const App = () => {
     return (
@@ -13,6 +14,7 @@ const App = () => {
             <Route path="/CreateProfile" element={<CreateProfile />} />
             <Route path="/LogIn" element={<LogIn />} />
             <Route path="/CustomerService" element={<CustomerService />} />
+            <Route path="/RegCustomerService" element={<RegCustomerService />} />
         </Routes>
     );
 };
