@@ -60,7 +60,7 @@ const RegCustomerService = () => {
                 <button onClick={() => handleMenuClick("LogIn")} className={activeMenu === "LogIn" ? styles.activeMenuButton : styles.menuButton}>Log In</button>
             </div>
             <div className={styles.createProfileContainer}>
-                <h2>Welcome to </h2>
+                <h2>Welcome to Non-Registered Customer Service Quries</h2>
                 <form onSubmit={handleSubmit} className={styles.profileForm}>
                     <div className={styles.formGroup}>
                         <label htmlFor="name">Name:</label>

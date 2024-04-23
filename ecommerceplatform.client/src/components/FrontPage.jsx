@@ -17,8 +17,7 @@ const FrontPage = () => {
     const fetchData = async () => {
         try {
             const response = await axios.get('https://localhost:7071/api/part1/productsData');
-            console.log(response);
-
+            
             setProductData(response.data);
         } catch (error) {
             setError(error);

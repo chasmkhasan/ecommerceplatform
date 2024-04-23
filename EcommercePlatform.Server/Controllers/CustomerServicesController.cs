@@ -60,26 +60,6 @@ namespace EcommercePlatform.Server.Controllers
 			}
 		}
 
-		[HttpGet]
-		[Route ("ByEmail/{email}")]
-		public async Task<IActionResult> GetCustomerServiceDataByEmail(string email)
-		{
-			try
-			{
-				var serviceData = await _database.GetServicesDataByEmailAsync(email);
-
-				if(serviceData.Count == 0)
-				{
-					return NoContent();
-				}
-				return Ok(serviceData);
-			}
-			catch (Exception)
-			{
-				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
-			}
-		}
-
 		[HttpPost]
 		public async Task<IActionResult> NewPostService(CustomersServicesData newServicesData)
 		{
@@ -95,7 +75,6 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
-
 		}
 
 		//[HttpDelete]

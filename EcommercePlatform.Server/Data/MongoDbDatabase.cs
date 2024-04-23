@@ -80,8 +80,10 @@ namespace EcommercePlatform.Server.Data
 		public async Task<ProfileData> GetProfileDataByUserNameAsync(string userName) =>
 			await _profileCollection.Find(x => x.UserName == userName).FirstOrDefaultAsync();
 
+		public async Task<ProfileData> GetProfileDataByEmailAsync(string email) =>
+			await _profileCollection.Find(x => x.Email == email).FirstOrDefaultAsync();
+
 		public async Task<ProfileData> GetAuthenticationByUsernameAndPasswordAsync(string userName, string hashedPassWord) =>
 			await _profileCollection.Find(x => x.UserName == userName && x.PassWord == hashedPassWord).FirstOrDefaultAsync();
-
 	}
 }
