@@ -79,6 +79,7 @@ const RegCustomerService = () => {
             <h1>Registered Customer Service Queries</h1>
             <div className={styles.menuContainer}>
                 <button onClick={() => navigate("/FrontPage")} className={styles.activeMenuButton}>Product Data</button>
+                <button onClick={() => navigate("/FrontPage")} className={styles.activeMenuButton}>Log Out</button>
             </div>
             <div className={styles.createProfileContainer}>
                 <h2>Welcome, {loggedInUser.name}!</h2>

@@ -16,7 +16,13 @@ const CreateProfile = () => {
 
     // Handlers for input changes
     const handleNameChange = (event) => setName(event.target.value);
-    const handleEmailChange = (event) => setEmail(event.target.value);
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        // Auto-fill username based on email
+        const username = event.target.value.split('@')[0]; // if user want to use only use first word or before @, active this code.
+        setUserName(username);
+        /*setUserName(event.target.value);*/
+    };
     const handleUserNameChange = (event) => setUserName(event.target.value);
     const handlePassWordChange = (event) => setPassWord(event.target.value);
 

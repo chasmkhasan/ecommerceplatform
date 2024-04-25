@@ -54,7 +54,7 @@ const RegCustomerService = () => {
     return (
         <div>
             <h1>Customer Service Quries</h1>
-            <div>
+            <div className={styles.menuContainer}>
                 <button onClick={() => handleMenuClick("FrontPage")} className={activeMenu === "FrontPage" ? styles.activeMenuButton : styles.menuButton}>Product Data</button>
                 <button onClick={() => handleMenuClick("CreateProfile")} className={activeMenu === "CreateProfile" ? styles.activeMenuButton : styles.menuButton}>Create Profile</button>
                 <button onClick={() => handleMenuClick("LogIn")} className={activeMenu === "LogIn" ? styles.activeMenuButton : styles.menuButton}>Log In</button>
@@ -76,11 +76,11 @@ const RegCustomerService = () => {
                     </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="subject">Subject:</label>
-                        <input id="subject" type="password" value={subject} onChange={handleSubjectChange} aria-label="Subject" />
+                        <input id="subject" type="text" value={subject} onChange={handleSubjectChange} aria-label="Subject" />
                     </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="description">Description:</label>
-                        <textarea id="description" type="description" value={description} onChange={handleDescriptionChange} aria-label="Description" />
+                        <textarea id="description" value={description} onChange={handleDescriptionChange} aria-label="Description" />
                     </div>
                     <button type="submit" className={styles.submitButton}>Submit</button>
                 </form>

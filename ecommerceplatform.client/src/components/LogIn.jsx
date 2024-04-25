@@ -46,6 +46,19 @@ const LogIn = () => {
         }
     };
 
+    const handleMenuClick = (menu) => {
+        setActiveMenu(menu);
+        if (menu === "CreateProfile") {
+            navigate("/CreateProfile");
+        }
+        else if (menu === "FrontPage") {
+            navigate("/FrontPage");
+        }
+        else if (menu === "CustomerService") {
+            navigate("/CustomerService");
+        }
+    };
+
     return (
         <div>
             <div>
@@ -53,6 +66,7 @@ const LogIn = () => {
                 <button onClick={() => handleMenuClick("CreateProfile")} className={activeMenu === "CreateProfile" ? styles.activeMenuButton : styles.menuButton}>Create Profile</button>
                 <button onClick={() => handleMenuClick("CustomerService")} className={activeMenu === "CustomerService" ? styles.activeMenuButton : styles.menuButton}>Customer Service</button>
             </div>
+            <h2> </h2>
             <div className={styles.logInContainer}>
                 <form onSubmit={handleSubmit} className={styles.logInForm}>
                     <div className={styles.inputGroup}>
