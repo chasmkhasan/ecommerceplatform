@@ -65,6 +65,13 @@ namespace EcommercePlatform.Server.Controllers
 		{
 			try
 			{
+				var exitingProfile = await _database.GetProfileDataByEmailAsync(newProfileData.Email);
+
+				if(exitingProfile != null)
+				{
+					return Conflict("Email already exists.");
+				}
+				
 				newProfileData.Id = ObjectId.GenerateNewId().ToString();
 
 				await _database.CreateProfileAsync(newProfileData);
@@ -75,7 +82,6 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
-
 		}
 
 		[HttpDelete("{id:length(24)}")]
@@ -98,7 +104,6 @@ namespace EcommercePlatform.Server.Controllers
 			{
 				return StatusCode(500, "An error occurred while fetching product data. Please try again later.");
 			}
-
 		}
 	}
 }

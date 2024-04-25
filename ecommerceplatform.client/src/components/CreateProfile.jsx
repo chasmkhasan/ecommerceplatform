@@ -44,7 +44,11 @@ const CreateProfile = () => {
             alert('Your profile has been created successfully!');
             navigate('/LogIn');  // Navigate to the LogIn page on success
         } catch (error) {
-            alert(`Error: ${error.response ? error.response.data.message : error.message}`);
+            if (error.responses && error.response.data && error.responses.data.message) {
+                alert(`Error: ${error.response.data.message}`);
+            } else {
+                alert('Email address Already Exit. Please select another active email address.');
+            }
         } finally {
             setIsSubmitting(false);  // Reset submission status
         }
