@@ -42,13 +42,22 @@ const CreateProfile = () => {
                 passWord,
             });
             alert('Your profile has been created successfully!');
-            navigate('/LogIn');  // Navigate to the LogIn page on success
+            /*navigate('/LogIn');*/  // Navigate to the LogIn page on success
         } catch (error) {
-            if (error.responses && error.response.data && error.responses.data.message) {
-                alert(`Error: ${error.response.data.message}`);
+            /*console.error('Error:', error); // Log the entire error object for debugging*/
+            if (error.response && error.response.data) {
+                const errorMessage = error.response.data;
+                /*console.log('Error message:', errorMessage); // Log the error message*/
+                if (errorMessage === "Email already exists.") {
+                    alert('Email address Already Exit. Please select another active email address.');
+                } else if (errorMessage === "UserName already exists.") {
+                    alert('User Name Already Exit. Please select another user name.');
+                } else {
+                    alert(`Error: ${errorMessage}`);
+                }
             } else {
-                alert('Email address Already Exit. Please select another active email address.');
-            }
+                alert('An error occurred while creating your profile. Please try again later.');
+            } 
         } finally {
             setIsSubmitting(false);  // Reset submission status
         }

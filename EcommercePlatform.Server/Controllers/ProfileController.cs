@@ -71,7 +71,14 @@ namespace EcommercePlatform.Server.Controllers
 				{
 					return Conflict("Email already exists.");
 				}
-				
+
+				var exitingUserName = await _database.GetProfileDataByUserNameAsync(newProfileData.UserName);
+
+				if (exitingUserName != null)
+				{
+					return Conflict("UserName already exists.");
+				}
+
 				newProfileData.Id = ObjectId.GenerateNewId().ToString();
 
 				await _database.CreateProfileAsync(newProfileData);
