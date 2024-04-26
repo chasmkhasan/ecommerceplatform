@@ -34,7 +34,7 @@ const LogIn = () => {
                 setAuthenticated(true);
                 // Store user's name and other necessary details in localStorage
                 localStorage.setItem('loggedInUser', JSON.stringify({ name: user.name, userName: user.userName, email: user.email }));
-                setTimeout(() => navigate("/RegCustomerService"), 3000); // Delay navigation to test message display
+                setTimeout(() => navigate("/RegCustomerService"), 2000); // Delay navigation to test message display
             } else {
                 console.log("No matching user found or invalid credentials.");
                 throw new Error("Invalid user data");
