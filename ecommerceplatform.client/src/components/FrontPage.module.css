@@ -12,6 +12,18 @@
     font-weight: bold;
 }
 
+.downloadButton{
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #4CAF50; /*Green Color*/
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 .productsContainer {
     display: flex;
     flex-wrap: wrap;
