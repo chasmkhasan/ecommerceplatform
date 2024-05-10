@@ -79,7 +79,7 @@ const CreateProfile = () => {
     return (
         <div>
             <div className={styles.menuContainer}>
-                <button onClick={() => handleMenuClick("FrontPage")} className={activeMenu === "FrontPage" ? styles.activeMenuButton : styles.menuButton}>Product Data</button>
+                <button onClick={() => handleMenuClick("FrontPage")} className={activeMenu === "FrontPage" ? styles.activeMenuButton : styles.menuButton}>Products</button>
                 {/*<button onClick={() => handleMenuClick("Create Profile")} className={activeMenu === "Create Profile" ? styles.activeMenuButton : styles.menuButton}>Create Profile</button>*/}
                 <button onClick={() => handleMenuClick("LogIn")} className={activeMenu === "LogIn" ? styles.activeMenuButton : styles.menuButton}>Log In</button>
                 <button onClick={() => handleMenuClick("CustomerService")} className={activeMenu === "CustomerService" ? styles.activeMenuButton : styles.menuButton}>Customer Service</button>

@@ -55,7 +55,7 @@ const RegCustomerService = () => {
         <div>
             <h1>Customer Service Quries</h1>
             <div className={styles.menuContainer}>
-                <button onClick={() => handleMenuClick("FrontPage")} className={activeMenu === "FrontPage" ? styles.activeMenuButton : styles.menuButton}>Product Data</button>
+                <button onClick={() => handleMenuClick("FrontPage")} className={activeMenu === "FrontPage" ? styles.activeMenuButton : styles.menuButton}>Products</button>
                 <button onClick={() => handleMenuClick("CreateProfile")} className={activeMenu === "CreateProfile" ? styles.activeMenuButton : styles.menuButton}>Create Profile</button>
                 <button onClick={() => handleMenuClick("LogIn")} className={activeMenu === "LogIn" ? styles.activeMenuButton : styles.menuButton}>Log In</button>
             </div>

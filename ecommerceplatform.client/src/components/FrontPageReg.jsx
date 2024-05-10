@@ -6,10 +6,9 @@ import { AuthContext } from '../AuthContext.jsx';
 
 const FrontPageReg = () => {
     const [productData, setProductData] = useState(null);
-    console.log(productData);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [activeMenu, setActiveMenu] = useState("Product Data");
+    const [activeMenu, setActiveMenu] = useState("Product's Details");
     const navigate = useNavigate();
     const [loggedInUser, setLoggedInUser] = useState({ name: '', email: '' });
     const { authenticated } = useContext(AuthContext);
