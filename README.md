@@ -1,4 +1,13 @@
-# ecommerceplatform
+# Ecommerceplatform
+
+In an e-commerce platform specializing in books, both registered users and unregistered customers can engage with the service through various inquiries. Registered users often have a dedicated list of questions, possibly accessible through their user profile or a help section tailored to their specific needs and past interactions. This list might include questions on order status, book availability, loyalty points, and how to manage personal information.
+
+Unregistered customers, though lacking an account, still have the opportunity to send questions, likely through a more general contact form. Their queries might revolve around purchasing processes, book details, shipping policies, and payment options, without delving into account-specific concerns. 
+
+This dual approach ensures that all potential and existing customers can receive support and information necessary to facilitate their transactions and enhance their shopping experience on the e-commerce platform.
+
+Tech Used: ASP.Net Core, Version-8, React(JS), axios, useNavigate, AuthContext, HTML, CSS, react-router-dom, useState, useEffect, useContext, MVC, REST API (WebAPI), IMongoCollection, JSON, BSON, Inheritance, Encapsulation, CORS policy, Window Powershell, localstorage, CRUD, HTTPGet, HTTpPost, HTTpPut, HTTpDelete.
+
 
 ## Features
 #### Product Details without DownLoad Option
