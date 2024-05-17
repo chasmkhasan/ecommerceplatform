@@ -1,5 +1,12 @@
 # ecommerceplatform
 
+## Features
+#### Product Details without download Option
+#### Create Profile
+#### Loggin
+#### Unregistered Customer quries Form.
+#### Product Details with download Option(Registered Customer)
+#### Registered Customer quries Form and List of Quries.
 
 ## Structure of Project:
 |   Tasks     |   Framwork    |  Effect  |
