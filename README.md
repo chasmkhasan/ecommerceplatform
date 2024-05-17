@@ -9,11 +9,11 @@ This dual approach ensures that all potential and existing customers can receive
 Tech Used: ASP.Net Core, Version-8, React(JS), axios, useNavigate, AuthContext, HTML, CSS, react-router-dom, useState, useEffect, useContext, MVC, REST API (WebAPI), IMongoCollection, JSON, BSON, Inheritance, Encapsulation, CORS policy, Window Powershell, localstorage, CRUD, HTTPGet, HTTpPost, HTTpPut, HTTpDelete.
 
 ## E-Portal Diagram
-<img src="https://github.com/chasmkhasan/ecommerceplatform/blob/67bb5c611808ac9af4ee4178150eba1ae114b815/WebPage%20Model.pdf " height="500">
+<img src="https://github.com/chasmkhasan/ecommerceplatform/blob/989b7b75d1beafc3e215e51dac246bad6b65781a/WebPage%20Model.jpg " height="500">
 ___
 
 ## API Design and Data Design
-<img src="https://github.com/chasmkhasan/ecommerceplatform/blob/6ab740a8bbb19106a9a89598010b33f0d136d72b/DataBase%20and%20API%20Model.pdf " height="500">
+<img src="https://github.com/chasmkhasan/ecommerceplatform/blob/989b7b75d1beafc3e215e51dac246bad6b65781a/DataBase%20and%20API%20Model.jpg " height="500">
 ___
 
 ## Features
