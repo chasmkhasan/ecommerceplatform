@@ -1,9 +1,9 @@
 # ecommerceplatform
 
 ## Features
-#### Product Details without download Option
-#### Create Profile
-#### Loggin
+#### Product Details without DownLoad Option
+#### Create Profile (Every user can create profile )
+#### Loggin (After logging)
 #### Unregistered Customer quries Form.
 #### Product Details with download Option(Registered Customer)
 #### Registered Customer quries Form and List of Quries.
