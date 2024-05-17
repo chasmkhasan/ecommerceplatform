@@ -28,3 +28,6 @@
 |Frontend |  React(JS)/Others   |  E-Commerce Platform
 |AuthContext | JWT Token  | 
 |AuthContext | BankID  | 
+
+## Team
+- [Md. Kamrul Hasan](https://github.com/chasmkhasan)
