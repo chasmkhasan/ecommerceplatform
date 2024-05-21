@@ -68,7 +68,8 @@ const RegCustomerService = () => {
                 description,
             });
             alert('Your request has been submitted successfully!');
-            navigate("/SomeSuccessPage");
+            window.location.reload(); // After submitt page will refreash 
+            /*navigate("/RegCustomerService");*/
         } catch (error) {
             alert(error.message);
         }
